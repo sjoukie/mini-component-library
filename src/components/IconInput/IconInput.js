@@ -32,6 +32,7 @@ const IconInput = ({
 
   return (
     <Wrapper>
+      <VisuallyHidden>{label}</VisuallyHidden>
       <IconWrapper style={{ '--size': styles.iconSize + 'px' }}>
         <Icon id={icon} size={styles.iconSize} />
       </IconWrapper>
