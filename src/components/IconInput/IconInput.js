@@ -31,20 +31,54 @@ const IconInput = ({
   const styles = STYLES[size];
 
   return (
-    <form>
-      <Icon id={'search'} strokeWidth={1} size={16} />
-      <input type="search" placeholder='Search...'></input>
-    </form>
+    <Wrapper>
+      <IconWrapper style={{ '--size': styles.iconSize + 'px' }}>
+        <Icon id={icon} size={styles.iconSize} />
+      </IconWrapper>
+      <TextInput {...delegated}
+        style={{
+          '--width': width + 'px',
+          '--height': styles.height / 16 + 'rem',
+          '--border-thickness': styles.borderThickness + 'px',
+          '--font-size': styles.fontSize / 16 + 'rem',
+        }} />
+    </Wrapper>
   );
 };
 
-const Form = styled.form`
-  border-color: transparent;
+const Wrapper = styled.label`
+  display: block;
+  position: relative;
+  color: ${COLORS.gray700};
+
+  &:hover {
+    color: ${COLORS.black};
+  }
 `;
 
-const InputBase = styled.input`
-  font-size: 18px;
-  font: Roboto;
+const IconWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  height: var(--size);
+`;
+
+const TextInput = styled.input`
+  width: var(--width);
+  height: var(--height);
+  font-size: var(--font-size);
+  border: none;
+  border-bottom: var(--border-thickness) solid ${COLORS.black};
+  padding-left: var(--height);
+  color: inherit;
+  font-weight: 700;
+  outline-offset: 2px;
+
+  &::placeholder {
+    font-weight: 400;
+    color: ${COLORS.gray500};
+  }
 `;
 
 export default IconInput;
